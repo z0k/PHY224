@@ -1,3 +1,6 @@
+#Assignment 1
+#Exercise 1
+
 #diet = ''
 #fruit = ['Banana', 'Cherry', 'Orange', 'Mango', 'Strawberry']
 #fruit.sort()

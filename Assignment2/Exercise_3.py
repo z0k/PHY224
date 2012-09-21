@@ -1,3 +1,6 @@
+#Assignment 2
+#Excercise 3
+
 #Populate a list with duplicate entries.
 items = range(5, 11) + range(1, 6) + range(9, 20)
 print "The original list is: ", items
