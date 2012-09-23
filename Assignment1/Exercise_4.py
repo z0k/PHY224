@@ -23,4 +23,4 @@ day = int(list_date[1])
 
 #The first day of the year is subtracted from the parsed date in terms of the number of days.
 #1 is added to month_date because the indices begin at 0.
-print "There have been", (date(2012, month_date + 1, day) - (date(2012, 1, 1))).days, "days since the beginning of the year."
+print user_date + " is the", (date(2012, month_date + 1, day) - (date(2012, 1, 1))).days + 1, "day of the year."

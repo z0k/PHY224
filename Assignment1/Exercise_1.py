@@ -12,6 +12,7 @@
 space = ' + '
 #Populate the list fruit with some arbitrary fruits.
 fruit = ['Banana', 'Cherry', 'Orange', 'Mango', 'Strawberry']
+fruit.sort()
 #This command takes elements from the list fruit and inserts the string
 #'space' between them.
 diet = space.join(fruit)
