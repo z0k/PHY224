@@ -2,7 +2,7 @@
 #Exercise 2
 
 #String to convert is created.
-person = 'fistName middleName lastName'
+person = 'Franklin Delano Roosevelt'
 #A list is created with each name as an object in the order shown above.
 list_person = person.split()
 #The middle object is assigned to a variable as a string.
