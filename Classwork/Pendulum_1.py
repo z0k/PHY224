@@ -40,24 +40,28 @@ for i in range(0, n - 1):
 #A graph is plotted with time in seconds on the x-axis and theta in degrees
 #on the y-axis.
 pylab.plot(time * delta_t, theta_array * (180. / pi))
+pylab.title('Figure 1')
 pylab.xlabel('time')
 pylab.ylabel('theta')
 pylab.show()
 
 pylab.plot(time * delta_t, angular_velocity)
+pylab.title('Figure 2')
 pylab.xlabel('time')
 pylab.ylabel('angular velocity')
 pylab.show()
 
 #A phase diagram is plotted: theta in degrees versus the angular velocity.
 pylab.plot(theta_array * (180. / pi), angular_velocity)
+pylab.title('Figure 3')
 pylab.xlabel('theta')
 pylab.ylabel('angular velocity')
 pylab.show()
 
-#A graph is plotted with time in seconds on the x-axis and energy in __ on
+#A graph is plotted with time in seconds on the x-axis and energy in joules on
 #the y-axis.
 pylab.plot(time * delta_t, total_energy)
+pylab.title('Figure 4')
 pylab.xlabel('time')
 pylab.ylabel('total energy')
 pylab.show()

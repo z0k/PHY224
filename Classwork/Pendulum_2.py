@@ -8,10 +8,10 @@ m = 0.040
 dec = 0.01105
 
 #Maximum number of objects in each array (or number of iterations + 1)
-n = 200000
+n = 20000
 
 #Define the constant for the time step interval.
-delta_t = 0.001
+delta_t = 0.01
 #Define the constant for gravity in meteres per second square.
 g = 9.81
 #Define the constant for length in meters.
@@ -41,17 +41,30 @@ for i in range(0, n - 1):
     angular_velocity[i + 1] = angular_velocity[i] - ((omega ** 2) * sin(theta_array[i + 1]) * delta_t) - dec * angular_velocity[i] * delta_t
     total_energy[i] = (1. / 2. * (m * L ** 2) * angular_velocity[i] ** 2) + (m * g * L * (1. - cos(theta_array[i])))
 
-#pylab.plot(angular_velocity, theta_array)
-pylab.plot(time * delta_t, theta_array * 180 / pi)
 
+pylab.plot(time * delta_t, theta_array * (180. / pi))
+pylab.title('Figure 5')
 pylab.xlabel('time')
 pylab.ylabel('theta')
 pylab.show()
 
+pylab.plot(time * delta_t, angular_velocity)
+pylab.title('Figure 6')
+pylab.xlabel('time')
+pylab.ylabel('angular velocity')
+pylab.show()
 
-#A graph is plotted with time in seconds on the x-axis and energy in __ on
+#A phase diagram is plotted: theta in degrees versus the angular velocity.
+pylab.plot(theta_array * (180. / pi), angular_velocity)
+pylab.title('Figure 7')
+pylab.xlabel('theta')
+pylab.ylabel('angular velocity')
+pylab.show()
+
+#A graph is plotted with time in seconds on the x-axis and energy in joules on
 #the y-axis.
 pylab.plot(time * delta_t, total_energy)
+pylab.title('Figure 8')
 pylab.xlabel('time')
 pylab.ylabel('total energy')
 pylab.show()
