@@ -12,14 +12,14 @@ conduction_error = 0.04 * conduction
 time_error = 0.001
 
 p = zeros(4)
-p[0] = 5.9
-p[1] = -2. / 5.
-p[2] = 3
-p[3] = .008
+p[0] = 3.5
+p[1] = -1. / 3.
+p[2] = 3.
+p[3] = -1. / 15.
 
 
 def peval(time, p):
-    return p[0] * (1 - exp(p[1] * time)) + p[2] * (exp(p[3] * time) - 1)
+    return p[0] * (1 - exp(-(p[1] * time) ** 2) + p[2] * (1 - exp(p[3] * time)))
 
 
 def residuals(p, conduction, time):
