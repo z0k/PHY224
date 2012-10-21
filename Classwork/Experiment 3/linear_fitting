@@ -1,0 +1,19 @@
+from numpy import *
+from pylab import *
+
+data = loadtxt('time_length.txt')
+
+period = data[:,0]
+print period
+
+length = data[:,1]
+print length
+
+period_square = period ** 2
+
+
+
+def residuals():
+    return 0
+
+
