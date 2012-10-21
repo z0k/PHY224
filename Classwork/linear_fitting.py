@@ -8,49 +8,50 @@ data = loadtxt('time_length.txt', dtype='float')
 data2 = loadtxt('angle_time.txt', dtype='float')
 
 period = data[:,0]
-print period
 
-length = data[:,1]
-print length
+#Convert data into centimeters.
+length = data[:,1] / 100
 
 angle = (pi / 180.) * data2[:,0]
-print angle
 
-period2 = data2[:,1]
+#Period data is normalized (divided by initial value)
+period2 = data2[:,1] / data2[0,1]
 print period2
 
-
-g = 980.665
+g = 9.80665
 p = zeros(2)
-p[0] = 0.
-p[1] = (4. * pi ** 2) / g 
+p[0] = 1.
+p[1] = 0.25
 
 
 period_squared = period ** 2
 period_squared_error = 2. * period * 0.05
 
-#Need to define theta max. 
-period_nonlinear = period[0] * (1. + 0.25 * sin(angle / 2.) ** 2)
+period_nonlinear = 1. + 0.25 * sin(angle / 2.) ** 2
 
 
-def peval(length, p):
-    return p[1] * length + p[0]
+def peval(angle, p):
+    return p[1] * sin(angle / 2.) ** 2 + p[0]
 
 
-def residuals(p, period_squared, length):
-    return period_squared - peval(length, p)
+def residuals(p, period_nonlinear, angle):
+    return period_nonlinear - peval(angle, p)
 
 
-plsq = leastsq(residuals, p, args=(period_squared, length), maxfev=2000)
+def grav(p):
+    return 4 * pi ** 2 / p[1]
 
-title('No Idea Whats Going On')
+
+plsq = leastsq(residuals, p, args=(period_nonlinear, angle), maxfev=2000)
+
+title('Linear Fit of Period vs. Length')
 xlabel('Length')
 ylabel('Period$^2$')
-errorbar(length, period_squared, period_squared_error, fmt='r+')
-plot(length, period_squared, marker='o', linestyle='None')
-plot(length, peval(length, p))
+errorbar((sin(angle / 2.) ** 2), period_nonlinear, 0.0001, fmt='r+')
+plot((sin(angle / 2.) ** 2), period_nonlinear, marker='o', linestyle='None')
+plot((sin(angle / 2.) ** 2), peval(angle, plsq[0]))
 show()
 
-title('Experimental Data')
-plot(sin(angle / 2.) ** 2, period2)
-show()
+title('Linear Fit of Period vs. Angle')
+
+print 'The acceleration due to gravity is ', grav(plsq[0])
